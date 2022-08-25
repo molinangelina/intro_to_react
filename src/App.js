@@ -7,6 +7,7 @@ import News from './views/News'
 import IG from './views/IG'
 import Login from './views/Login'
 import SignUp from './views/SignUp'
+import CreatePost from './views/CreatePost'
 
 export default class App extends Component {
   constructor() {
@@ -17,6 +18,12 @@ export default class App extends Component {
       name: 'Angel',
       age: 22
     }
+  }
+
+  logMeIn = (user ) => {
+    this.setState({
+      user: user
+    })
   }
 
   addToAge = () => {
@@ -39,8 +46,9 @@ export default class App extends Component {
             <Route path='/contact' element={<Contact/>}/>
             <Route path='/news' element={<News/>}/>
             <Route path='/feed' element={<IG posts={this.state.posts}/>}/>
-            <Route path='/login' element={<Login/>}/>
+            <Route path='/login' element={<Login logMeIn={this.logMeIn}/>}/>
             <Route path='/signup' element={<SignUp/>}/>
+            <Route path='/posts/create' element={<CreatePost user={this.state.user}/>}/>
           </Routes>
 
           {/* BLOCK CONTENT */}
