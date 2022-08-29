@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import Post from '../components/Post';
+import { Link } from 'react-router-dom';
 
 export default class IG extends Component {
     constructor() {
@@ -22,7 +23,8 @@ export default class IG extends Component {
     }
 
     showPosts = () => {
-        return this.state.posts.map(p => <Post key={p.id} postInfo={p} />) //i is not needed bc posts already have unique ids // get every post(p) and return every Post component
+        // the ley should be on the outtermost
+        return this.state.posts.map(p=><Link key={p.id} to={`/posts/${p.id}`}><Post postInfo={p}/></Link>) //i is not needed bc posts already have unique ids // get every post(p) and return every Post component
     }
 
     render() {

@@ -34,7 +34,7 @@ export default class Nav extends Component {
                 <Link className="nav-link" to="/posts/create">Create Post</Link>
               </li>
               <li className="nav-item">
-                <Link className="nav-link" to="/todo">ToDo List</Link>
+                <Link className="nav-link" to="/todo">To Do List</Link>
               </li>
               <li className="nav-item dropdown">
                 <a className="nav-link dropdown-toggle" href="/" role="button" data-bs-toggle="dropdown" aria-expanded="false">

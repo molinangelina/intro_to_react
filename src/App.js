@@ -9,6 +9,8 @@ import Login from './views/Login'
 import SignUp from './views/SignUp'
 import CreatePost from './views/CreatePost'
 import ToDoList from './views/ToDoList'
+import UpdatePost from './views/UpdatePost'
+import SinglePost from './views/SinglePost'
 
 export default class App extends Component {
   constructor() {
@@ -40,8 +42,6 @@ export default class App extends Component {
           {/* {this.state.name}
           <button onClick={this.addToAge}>Happy Birthday!</button> */}
 
-          {/* BLOCK CONTENT */}
-
           <Routes>
             <Route path='/' element={<Home ageXYZ={this.state.age}/>}/>
             <Route path='/contact' element={<Contact/>}/>
@@ -50,10 +50,11 @@ export default class App extends Component {
             <Route path='/login' element={<Login logMeIn={this.logMeIn}/>}/>
             <Route path='/signup' element={<SignUp/>}/>
             <Route path='/posts/create' element={<CreatePost user={this.state.user}/>}/>
+            <Route path='/posts/update/:postId' element={<UpdatePost user={this.state.user}/>}/>
+            <Route path='/posts/:postId' element={<SinglePost user={this.state.user}/>}/>
             <Route path='/todo' element={<ToDoList/>}/>
           </Routes>
 
-          {/* BLOCK CONTENT */}
         </div>
       </BrowserRouter>
     )

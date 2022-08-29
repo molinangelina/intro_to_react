@@ -37,6 +37,9 @@ export default class Login extends Component {
         });
         const data = await res.json();
         console.log(data)
+        if (data.status === 'ok') {
+            this.props.logMeIn(data.data)
+        }
 
     };
 
