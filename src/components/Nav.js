@@ -14,7 +14,7 @@ export default class Nav extends Component {
 
   render() {
     return (
-        <nav className="navbar navbar-expand-lg bg-light">
+      <nav className="navbar navbar-expand-lg bg-light">
         <div className="container-fluid">
           <a className="navbar-brand" href="/">Navbar</a>
           <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -34,24 +34,42 @@ export default class Nav extends Component {
               <li className="nav-item">
                 <Link className="nav-link" to="/feed">Finstagram</Link>
               </li>
-              <li className="nav-item">
-                <Link className="nav-link" to="/login">Login</Link>
-              </li>
-              <li className="nav-item">
-                <Link className="nav-link" to="/signup">Sign Up</Link>
-              </li>
-              <li className="nav-item">
-                <Link className="nav-link" to="/posts/create">Create Post</Link>
-              </li>
+
+              {this.props.user.username ?
+                <>
+                  <li className="nav-item">
+                    <p className="nav-link">Hello, {this.props.user.username}</p>
+                  </li>
+                  <li className="nav-item" onClick={this.props.logMeOut}>
+                    <Link className="nav-link" to="/login">Log Out</Link>
+                  </li>
+                </>
+                :
+                <>
+                  <li className="nav-item">
+                    <Link className="nav-link" to="/login">Login</Link>
+                  </li>
+                  <li className="nav-item">
+                    <Link className="nav-link" to="/signup">Sign Up</Link>
+                  </li>
+                  <li className="nav-item">
+                    <Link className="nav-link" to="/posts/create">Create Post</Link>
+                  </li>
+                </>
+              }
+
               <li className="nav-item">
                 <Link className="nav-link" to="/todo">To Do List</Link>
+              </li>
+              <li className="nav-item">
+                <Link className="nav-link" to="/shop">Shop</Link>
               </li>
               <li className="nav-item">
                 <Link className="nav-link" to="/cart">{this.props.cart.length} | {this.getSubTotal()}</Link>
               </li>
             </ul>
             <form className="d-flex" role="search">
-              <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
+              <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
               <button className="btn btn-outline-success" type="submit">Search</button>
             </form>
           </div>

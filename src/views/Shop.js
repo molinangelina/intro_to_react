@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom';
 import Product from '../components/Product';
 
-export default function Shop({addToCart}) {
+export default function Shop({addToCart, user}) {
     // initial state
 const [products, setProducts] = useState([])
 
@@ -26,13 +26,12 @@ const getProducts = async () => {
     const showProducts = () => {
         // key={p.id} is moved to the <Link> bc the parent should have the unique key
         // product={p} is showing product info 
-        return products.map(p =><Product addToCart={addToCart} product={p}/>) // this is the state don't need to say "this.state.products" bc we're not in a class
+        return products.map(p =><Product key={p.id} addToCart={addToCart} product={p} user={user}/>) // this is the state don't need to say "this.state.products" bc we're not in a class
     }
 
     return (
-    <div>
-        Shop
-        {showProducts()}
-    </div>
+        <div className='row'>
+            {showProducts()}
+        </div>
     )
 }

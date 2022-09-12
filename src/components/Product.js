@@ -1,7 +1,27 @@
 import React from 'react';
 
-export default function Product({ product, addToCart }) { // product prop being passed in(accepted) & show that product in browser
+export default function Product({ product, addToCart, user }) { // product prop being passed in(accepted) & show that product in browser
 
+    const addToCartAPI = async (product) => {
+        const res = await fetch('http://localhost:5000/api/cart/add', {
+            method: "POST",
+            headers: {
+                "Content-type": "application/json", // telling computer that we're sending json info
+                Authorization: `Bearer ${user.token}` //whos sending it? token needs to be attached to request
+            },
+            body: JSON.stringify({productId: product.id})
+        });
+        const data = await res.json();
+        console.log(data)
+    };
+
+    // saves cart for logged in users?
+    const handleClick = (product) => {
+        addToCart(product)
+        if (user.token) {
+            addToCartAPI(product)
+        }
+    };
 
     return (
         <div className="card" style={{width: "18rem"}}>
@@ -10,7 +30,7 @@ export default function Product({ product, addToCart }) { // product prop being 
                 <h5 className="card-title">{product.product_name}</h5>
                 <p className="card-text">${product.price}</p>
                 <p className="card-text">{product.description}</p>
-                <button onClick={()=>{addToCart(product)}} className="btn btn-primary">Add to Cart</button>
+                <button onClick={()=>{handleClick(product)}} className="btn btn-primary">Add to Cart</button>
             </div>
         </div>
     )
